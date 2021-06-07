@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from sales_manager.shortcut import upload_to
 
 class Book(models.Model):
     title = models.CharField(
@@ -26,6 +26,11 @@ class Book(models.Model):
         related_name="rated_book",
         blank=True,
         through="UserRateBook"
+    )
+    img = models.ImageField(
+        blank=True,
+        null=True,
+        upload_to=upload_to
     )
 
     def __str__(self):
